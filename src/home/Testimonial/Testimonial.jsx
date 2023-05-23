@@ -24,7 +24,18 @@ const Testimonial = () => {
 
             ></SectionTitle>
             <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-                <SwiperSlide></SwiperSlide>
+
+                {
+                    reviews.map(review=>(<SwiperSlide key={review._id}>
+
+                        <div className='p-20'>
+                            
+                            <p>{review.details}</p>
+                            <p className='text-yellow-500'>{review.name}</p>
+                        </div>
+                    </SwiperSlide>))
+                }
+                
                 
             </Swiper>
 
