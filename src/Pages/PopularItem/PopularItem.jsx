@@ -6,17 +6,17 @@ const PopularItem = () => {
 
     const [items, setItems] = useState([])
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch('Menubar.json')
-        .then(res=>res.json())
-        .then(data=>{
-            const remaining = data.filter(item=>item.category==='popular')
-            setItems(remaining)
-        })
-    },[])
+            .then(res => res.json())
+            .then(data => {
+                const remaining = data.filter(item => item.category === 'popular')
+                setItems(remaining)
+            })
+    }, [])
 
     return (
-        <section>
+        <section className='my-10'>
             <SectionTitle
                 SubHeader={'Check it out'}
                 Header={'From our menu'}
@@ -25,11 +25,14 @@ const PopularItem = () => {
 
             <div className='grid md:grid-cols-2 gap-4'>
                 {
-                    items.map(item=> <MenuItem 
+                    items.map(item => <MenuItem
                         key={item._id}
                         item={item}
-                        ></MenuItem> )
+                    ></MenuItem>)
                 }
+            </div>
+            <div className='text-center'>
+                <button className="btn btn-outline border-0 border-b-4 ">View full menu</button>
             </div>
 
         </section>
