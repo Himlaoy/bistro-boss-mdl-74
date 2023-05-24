@@ -4,7 +4,6 @@ import orderImg from '../../assets/shop/banner2.jpg'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useMenu from '../../Hooks/useMenu';
-import OrderCard from '../OrderCard/OrderCard';
 import OrderTab from './OrderTab';
 import { useParams } from 'react-router-dom';
 
@@ -37,7 +36,7 @@ const Order = () => {
                     <Tab>Pizza</Tab>
                     <Tab>Drinks</Tab>
                 </TabList>
-                
+
                 <TabPanel>
                     <OrderTab items={soup}></OrderTab>
                 </TabPanel>
