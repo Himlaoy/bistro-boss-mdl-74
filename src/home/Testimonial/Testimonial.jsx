@@ -21,7 +21,7 @@ const Testimonial = () => {
     return (
         <div>
             <SectionTitle
-                SubHeader={'--- What Our Client Say'}
+                SubHeader={'--- What Our Client Say---'}
                 Header={'TESTIMONIALS'}
 
             ></SectionTitle>
