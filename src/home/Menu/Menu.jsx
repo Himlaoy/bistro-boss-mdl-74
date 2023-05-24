@@ -13,8 +13,6 @@ const Menu = () => {
             </Helmet>
             <Cover title={'Our menu'} img={img1}></Cover>
             <PopularItem></PopularItem>
-            <PopularItem></PopularItem>
-            <PopularItem></PopularItem>
         </div>
     );
 };
