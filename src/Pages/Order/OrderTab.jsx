@@ -6,7 +6,7 @@ const OrderTab = ({items}) => {
         <div>
             <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10'>
                 {
-                    items.map(so => <OrderCard key={so._id} item={so}></OrderCard>)
+                    items.map(item => <OrderCard key={item._id} item={item}></OrderCard>)
                 }
             </div>
         </div>

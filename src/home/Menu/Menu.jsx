@@ -26,11 +26,11 @@ const Menu = () => {
             </Helmet>
             <Cover title={'Our menu'} img={img1}></Cover>
             <SectionTitle SubHeader={"Don't miss"} Header={"Today's Offer"}></SectionTitle>
-            <MenuCategory items={offered}  title={''}></MenuCategory>
-            <MenuCategory items={Dessert}  title={'Dessert'} img={img2}></MenuCategory>
-            <MenuCategory items={pizza}  title={'Pizza'} img={img3}></MenuCategory>
+            <MenuCategory items={offered}  title={'drunks'} img={img1}></MenuCategory>
+            <MenuCategory items={Dessert}  title={'dessert'} img={img2}></MenuCategory>
+            <MenuCategory items={pizza}  title={'dizza'} img={img3}></MenuCategory>
             <MenuCategory items={salad}  title={'Salad'} img={img4}></MenuCategory>
-            <MenuCategory items={soup}  title={'Soup'} img={img4}></MenuCategory>
+            <MenuCategory items={soup}  title={'Soup'} img={img5}></MenuCategory>
 
         </div>
     );
