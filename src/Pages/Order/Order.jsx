@@ -30,11 +30,7 @@ const Order = () => {
                     <Tab>Drink</Tab>
                 </TabList>
                 <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10'>
-                        {
-                            soup.map(so=> <OrderCard key={so._id} item={so}></OrderCard>)
-                        }
-                    </div>
+                    
                 </TabPanel>
                 <TabPanel></TabPanel>
                 <TabPanel></TabPanel>
