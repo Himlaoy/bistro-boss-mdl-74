@@ -6,7 +6,7 @@ const MenuItem = ({ item }) => {
 
     return (
         <>
-            <div className='flex space-x-4 mb-20 mt-4'>
+            <div className='flex space-x-4 my-10 mt-4'>
                 <img style={{ borderRadius: '0px 200px 200px 200px' }} className='w-[120px] ' src={image} alt="" />
                 <div>
                     <p className='uppercase'>{name}-------------</p>
