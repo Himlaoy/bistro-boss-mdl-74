@@ -10,10 +10,13 @@ import { useParams } from 'react-router-dom';
 
 const Order = () => {
 
-    const [taIndex, setTabIndex] = useState(0)
     const [menu] = useMenu([])
+    
+    const categories = ['soup','dessert', 'salad', 'pizza', 'drinks']
+    const { category } = useParams()
+    const initialIndexing = categories.indexOf(category)
+    const [tabIndex, setTabIndex] = useState(initialIndexing)
 
-    const {category} = useParams()
     // console.log(category)
 
     const Dessert = menu.filter(item => item.category === 'dessert')
@@ -26,7 +29,7 @@ const Order = () => {
     return (
         <div>
             <Cover img={orderImg} title={'Order Food'}></Cover>
-            <Tabs defaultIndex={taIndex} onSelect={(index) => setTabIndex(index)}>
+            <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
                     <Tab>Soup</Tab>
                     <Tab>Dessert</Tab>
@@ -38,16 +41,16 @@ const Order = () => {
                     <OrderTab items={soup}></OrderTab>
                 </TabPanel>
                 <TabPanel>
-                <OrderTab items={Dessert}></OrderTab>
+                    <OrderTab items={Dessert}></OrderTab>
                 </TabPanel>
                 <TabPanel>
-                <OrderTab items={salad}></OrderTab>
+                    <OrderTab items={salad}></OrderTab>
                 </TabPanel>
                 <TabPanel>
-                <OrderTab items={pizza}></OrderTab>
+                    <OrderTab items={pizza}></OrderTab>
                 </TabPanel>
                 <TabPanel>
-                <OrderTab items={drinks}></OrderTab>
+                    <OrderTab items={drinks}></OrderTab>
                 </TabPanel>
             </Tabs>
         </div>
