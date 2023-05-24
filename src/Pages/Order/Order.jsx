@@ -4,6 +4,7 @@ import orderImg from '../../assets/shop/banner2.jpg'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useMenu from '../../Hooks/useMenu';
+import OrderCard from '../OrderCard/OrderCard';
 
 const Order = () => {
 
@@ -28,7 +29,13 @@ const Order = () => {
                     <Tab>Pizza</Tab>
                     <Tab>Drink</Tab>
                 </TabList>
-                <TabPanel></TabPanel>
+                <TabPanel>
+                    <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10'>
+                        {
+                            soup.map(so=> <OrderCard key={so._id} item={so}></OrderCard>)
+                        }
+                    </div>
+                </TabPanel>
                 <TabPanel></TabPanel>
                 <TabPanel></TabPanel>
                 <TabPanel></TabPanel>
