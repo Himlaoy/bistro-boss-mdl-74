@@ -6,7 +6,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 
 const SignUp = () => {
 
-    const {createUser} = useContext(AuthContext)
+    const {createUser, updateUser} = useContext(AuthContext)
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data =>{
@@ -15,6 +15,11 @@ const SignUp = () => {
             .then(result => {
                 const loggedUser = result.user
                 console.log(loggedUser)
+                updateUser(data.name, data.photo)
+                .then(()=>{})
+                
+                .catch(error=>console.log(error.message))
+                console.log('user updated')
             })
             .catch(error => console.log(error.message))
     };
@@ -37,7 +42,14 @@ const SignUp = () => {
                                 <span className="label-text">Name</span>
                             </label>
                             <input type="text" {...register("name", { required: true })} name='name' placeholder="Name" className="input input-bordered" />
-                            {errors.email && <span className='text-orange-400'>Password is required</span>}
+                            {errors.email && <span className='text-orange-400'>Name is required</span>}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">URL</span>
+                            </label>
+                            <input type="URL" {...register("photo", { required: true })} name='photo' placeholder="photo" className="input input-bordered" />
+                            {errors.photo && <span className='text-orange-400'>PhotoURL is required</span>}
                         </div>
                         <div className="form-control">
                             <label className="label">
