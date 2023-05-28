@@ -15,7 +15,7 @@ const Featured = () => {
                     <img src={img} alt="" />
                 </div>
                 <div>
-                    <p className='Aug, 2023'></p>
+                    <p className=''>Aug, 2023</p>
                     <p className='uppercase'>WHERE CAN I GET SOME?</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam assumenda mollitia quis! Hic sapiente ea autem nam placeat ad magni sed adipisci impedit dicta. Possimus, laborum provident. Quaerat dolor, possimus ut quidem eum nesciunt fugit error repudiandae! Temporibus ipsa quas ex dolorem unde excepturi dolor! Libero itaque minima sequi at.</p>
 
