@@ -2,11 +2,13 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useCart from '../../Hooks/useCart';
 
 const OrderCard = ({ item }) => {
     const { name, image, recipe, price,_id } = item
     const navigate = useNavigate()
     const location = useLocation()
+    const [refetch] = useCart()
     
 
     const {user} = useContext(AuthContext)
@@ -48,6 +50,7 @@ const OrderCard = ({ item }) => {
                 confirmButtonText: 'Login now!'
               }).then((result) => {
                 if (result.isConfirmed) {
+                    refetch() ; // refetch the cart to update the number
                  navigate('/login', {state:{from:location}})
                 }
               })
