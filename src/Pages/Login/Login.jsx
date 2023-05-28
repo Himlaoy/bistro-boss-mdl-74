@@ -95,8 +95,9 @@ const Login = () => {
                             <input  onBlur={checkCaptcha} type="text" name='captcha' placeholder="type the text above" className="input input-bordered" />
 
                         </div>
+                        {/* TODO : WILL FIXED NEXT */}
                         <div className="form-control mt-6">
-                            <button disabled={disabled} className="btn btn-primary" type="submit">Login</button>
+                            <button disabled={false} className="btn btn-primary" type="submit">Login</button>
                         </div>
                     </form>
                     <button className='py-8'>Do not have an account please <Link className='text-orange-400' to={'/signUp'}>SignUp</Link>  </button>
