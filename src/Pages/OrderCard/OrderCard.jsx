@@ -8,7 +8,7 @@ const OrderCard = ({ item }) => {
     const { name, image, recipe, price,_id } = item
     const navigate = useNavigate()
     const location = useLocation()
-    const [refetch] = useCart()
+    const [,refetch] = useCart()
     
 
     const {user} = useContext(AuthContext)
@@ -19,7 +19,7 @@ const OrderCard = ({ item }) => {
         
         if(user && user.email){
             const cartInfo = {menuItemId: _id, image, recipe, price, name,email:user.email}
-            fetch('http://localhost:5000/cart',{
+            fetch('http://localhost:5000/carts',{
                 method:'POST',
                 headers:{
                     "content-type":"application/json"
@@ -29,6 +29,7 @@ const OrderCard = ({ item }) => {
             .then(res=>res.json())
             .then(data=>{
                 if(data.insertedId){
+                    refetch() ; // refetch the cart to update the number
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -50,7 +51,7 @@ const OrderCard = ({ item }) => {
                 confirmButtonText: 'Login now!'
               }).then((result) => {
                 if (result.isConfirmed) {
-                    refetch() ; // refetch the cart to update the number
+                    
                  navigate('/login', {state:{from:location}})
                 }
               })

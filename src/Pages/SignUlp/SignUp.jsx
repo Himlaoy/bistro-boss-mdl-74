@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
+import SocialLogin from '../../shared/socialLogin/SocialLogin';
 
 const SignUp = () => {
 
     const {createUser, updateUser} = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data =>{
@@ -16,7 +19,31 @@ const SignUp = () => {
                 const loggedUser = result.user
                 console.log(loggedUser)
                 updateUser(data.name, data.photo)
-                .then(()=>{})
+                .then(()=>{
+                    const userInfo = {name: data.name, email: data.email, image:data.photo}
+                    fetch('http://localhost:5000/users',{
+                        method:"POST",
+                        headers:{
+                            "content-type":"application/json"
+                        },
+                        body:JSON.stringify(userInfo)
+                    })
+                    .then(res=>res.json())
+                    .then(data=>{
+                        if(data.insertedId){
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Sign Up successfully',
+                                showConfirmButton: false,
+                                timer: 1500
+                              })
+                              navigate('/')
+
+                        }
+                    })
+                    
+                })
                 
                 .catch(error=>console.log(error.message))
                 console.log('user updated')
@@ -77,6 +104,7 @@ const SignUp = () => {
                         </div>
                     </form>
                     <button className='py-8'>Already have an account? please <Link className='text-orange-400' to={'/login'}>Login</Link></button>
+                    <SocialLogin></SocialLogin>
 
                 </div>
             </div>
