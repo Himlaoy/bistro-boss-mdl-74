@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 const MyCart = () => {
 
-    const [cart] = useCart()
+    const [cart, refetch] = useCart()
 
     const total = cart.reduce((sum, item) => item.price + sum, 0)
     const allTotal = total.toFixed(2)
@@ -22,14 +22,21 @@ const MyCart = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/cart/${crt._id}`,{
+                fetch(`http://localhost:5000/carts/${crt._id}`,{
                     method:'DELETE'
                 })
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
+                .then(res=>res.json())
+                .then(data=>{
+                    if(data.deletedCount>0){
+                        refetch()
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+                
             }
         })
     }
