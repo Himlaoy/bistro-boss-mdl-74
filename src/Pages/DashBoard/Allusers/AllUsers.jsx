@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const AllUsers = () => {
 
@@ -10,13 +11,30 @@ const AllUsers = () => {
         return res.json()
     })
 
-    const handleUpdate= (id)=>{
-        console.log(id)
+    const handleMakeAdmin = (usr) => {
+        fetch(`http://localhost:5000/users/admin/${usr._id}`, {
+            method: 'PATCH',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    refetch()
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${usr.name } an admin now`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
     }
 
-    const handleMakeAdmin = (id)=>{
-        console.log(id)
+
+    const handleDelete = (usr) => {
+
     }
+
 
     return (
         <div className='w-full'>
@@ -38,16 +56,17 @@ const AllUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map((usr, index)=>
-                            <tr key={usr._id}>
-                                <th>{index + 1}</th>
-                                <td>{usr.name}</td>
-                                <td>{usr.email}</td>
-                                <td>{usr.role==='admin'? 'admit': <button className='btn-ghost bg-orange-500' onClick={()=>handleMakeAdmin(usr._id)}><FaUserShield></FaUserShield></button>}</td>
-                                <td><button className='btn-ghost bg-orange-500' onClick={()=>handleMakeAdmin(usr._id)}><FaTrashAlt className='text-orange-500'></FaTrashAlt></button></td>
-                            </tr>)
+                            users.map((usr, index) =>
+                                <tr key={usr._id}>
+                                    <th>{index + 1}</th>
+                                    <td>{usr.name}</td>
+                                    <td>{usr.email}</td>
+                                    <td>{usr.role === 'admin' ? 'admit' : <button className='btn-ghost bg-orange-500' onClick={() => handleMakeAdmin(usr)}><FaUserShield></FaUserShield></button>}</td>
+
+                                    <td><button className='btn-ghost bg-orange-500' onClick={() => handleDelete(usr._id)}><FaTrashAlt className='text-slate-500'></FaTrashAlt></button></td>
+                                </tr>)
                         }
-                        
+
                     </tbody>
                 </table>
             </div>
