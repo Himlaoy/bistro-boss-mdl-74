@@ -21,7 +21,8 @@ const useAxiosSecure = () => {
             if (token) {
                 config.headers.Authorization = `Barer ${token}`
             }
-            return config()
+
+            return config;
 
         })
 

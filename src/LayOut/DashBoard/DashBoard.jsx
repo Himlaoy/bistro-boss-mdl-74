@@ -3,12 +3,15 @@ import { FaBook, FaCalendar, FaHome, FaShoppingCart, FaUsers, FaUtensils, FaWall
 import { NavLink, Outlet } from 'react-router-dom';
 import useCart from '../../Hooks/useCart';
 import { Helmet } from 'react-helmet-async';
+import useAdmin from '../../Hooks/useAdmin';
 
 const DashBoard = () => {
 
     const [cart] = useCart()
 
-    const isActive = true
+    // const isActive = true
+    const [isAdmin] = useAdmin()
+    console.log('is admin',isAdmin)
 
     return (
         <div className="drawer drawer-mobile">
@@ -26,7 +29,7 @@ const DashBoard = () => {
                 <ul className="menu p-4 w-80 bg-[#D1A054] ">
 
                     {
-                        isActive ?
+                        isAdmin ?
                             <>
                                 <li><NavLink to={'/'}><FaHome></FaHome> Admin Home</NavLink></li>
                                 <li><NavLink to={'/dashboard/reservation'}><FaUtensils></FaUtensils>Add items</NavLink></li>
