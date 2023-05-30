@@ -9,7 +9,7 @@ const DashBoard = () => {
 
     const [cart] = useCart()
 
-    // const isActive = true
+    // const isAdmin = true
     const [isAdmin] = useAdmin()
     console.log('is admin',isAdmin)
 

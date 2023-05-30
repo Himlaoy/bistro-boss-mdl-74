@@ -1,6 +1,6 @@
 import React from 'react';
 import useAuth from './useAuth';
-import useAxiosSecure from './useAxiosSecure';
+// import useAxiosSecure from './useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { get } from 'react-hook-form';
 
@@ -14,9 +14,9 @@ const useAdmin = () => {
         queryKey:['isAdmin', user?.email],
         queryFn: async ()=>{
             const res = await fetch(`http://localhost:5000/users/admin/${user?.email}`,{
-                // headers:{
-                //     authorization: `barer ${token}`
-                // }
+                headers:{
+                    authorization: `barer ${token}`
+                }
             })
             return res.json()
         }
