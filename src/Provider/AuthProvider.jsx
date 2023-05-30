@@ -50,6 +50,7 @@ const AuthProvider = ({ children }) => {
                 .then(data=>{
 
                     localStorage.setItem('jwt-token', data.data.token)
+                    console.log(data.data.token)
                 })
             }
             else{
