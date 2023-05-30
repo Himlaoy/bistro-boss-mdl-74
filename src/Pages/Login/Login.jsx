@@ -4,6 +4,7 @@ import Swal from 'sweetalert2'
 import { AuthContext } from '../../Provider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import SocialLogin from '../../shared/socialLogin/SocialLogin';
 
 
 
@@ -101,6 +102,7 @@ const Login = () => {
                         </div>
                     </form>
                     <button className='py-8'>Do not have an account please <Link className='text-orange-400' to={'/signUp'}>SignUp</Link>  </button>
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>
