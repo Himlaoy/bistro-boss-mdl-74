@@ -1,7 +1,8 @@
 import React from 'react';
-import { FaCalendar, FaHome, FaShoppingCart, FaUtensils, FaWallet } from 'react-icons/fa';
+import { FaBook, FaCalendar, FaHome, FaShoppingCart, FaUsers, FaUtensils, FaWallet } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import useCart from '../../Hooks/useCart';
+import { Helmet } from 'react-helmet-async';
 
 const DashBoard = () => {
 
@@ -11,6 +12,9 @@ const DashBoard = () => {
 
     return (
         <div className="drawer drawer-mobile">
+            <Helmet>
+                <title>Bistro Boss | DashBoard</title>
+            </Helmet>
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col items-center justify-center">
                 <Outlet></Outlet>
@@ -27,6 +31,8 @@ const DashBoard = () => {
                                 <li><NavLink to={'/'}><FaHome></FaHome> Admin Home</NavLink></li>
                                 <li><NavLink to={'/dashboard/reservation'}><FaUtensils></FaUtensils>Add items</NavLink></li>
                                 <li><NavLink to={'/dashboard/history'}><FaWallet></FaWallet>Manage Items</NavLink></li>
+                                <li><NavLink to={'/dashboard/history'}><FaBook></FaBook>Manage Bookings</NavLink></li>
+                                <li><NavLink to={'/dashboard/allusers'}><FaUsers></FaUsers>All users</NavLink></li>
                                 
                             </>
                             :
