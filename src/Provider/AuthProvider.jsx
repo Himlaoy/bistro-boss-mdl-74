@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
             console.log('current user', currentUser)
 
             if(currentUser){
-                const info = {email:currentUser.email,}
+                const info = {email:currentUser?.email,}
                 
                 fetch('http://localhost:5000/jwt',{
                     method:'POST',
@@ -55,10 +55,11 @@ const AuthProvider = ({ children }) => {
                     },
                     body:JSON.stringify(info)
                 })
+                .then(res=>res.json())
                 .then(data=>{
 
                     localStorage.setItem('jwt-token', data.token)
-                    console.log( 'token',data.token)
+                    console.log( 'token',data)
                 })
             }
             else{

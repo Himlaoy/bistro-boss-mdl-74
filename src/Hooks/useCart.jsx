@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const useCart = () => {
     const {user} = useContext(AuthContext)
+    
 
     const token = localStorage.getItem('jwt-token')
     // const [axiosSecure] = useAxiosSecure()
@@ -28,7 +29,7 @@ const useCart = () => {
     })
 
     return [cart, refetch]
-
+    
 
     
 };
