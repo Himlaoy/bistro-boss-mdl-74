@@ -6,8 +6,14 @@ import Swal from 'sweetalert2';
 
 const AllUsers = () => {
 
+    const token = localStorage.getItem('jwt-token')
+
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await fetch(`http://localhost:5000/users`)
+        const res = await fetch(`http://localhost:5000/users`,{
+            headers:{
+                authorization: `barer ${token}`
+            }
+        })
         return res.json()
     })
 
