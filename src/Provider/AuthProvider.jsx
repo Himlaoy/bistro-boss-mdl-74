@@ -60,13 +60,13 @@ const AuthProvider = ({ children }) => {
 
                     localStorage.setItem('jwt-token', data.token)
                     console.log( 'token',data)
+                    setLoading(false)
                 })
             }
             else{
                 localStorage.removeItem('jwt-token')
             }
 
-            setLoading(false)
 
         })
         return ()=>{
