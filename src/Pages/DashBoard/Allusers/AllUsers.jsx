@@ -62,7 +62,7 @@ const AllUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map((usr, index) =>
+                            users?.map((usr, index) =>
                                 <tr key={usr._id}>
                                     <th>{index + 1}</th>
                                     <td>{usr.name}</td>

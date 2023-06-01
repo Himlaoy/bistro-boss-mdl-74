@@ -3,11 +3,24 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { FaShoppingCart } from 'react-icons/fa';
 import useCart from '../../Hooks/useCart';
+import NavCounter from './NavProductCount/NavCounter';
 
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext)
-    const [cart] = useCart()
+
+    // let cart = null;
+
+    // if (user) {
+    //   const [userCart] = useCart();
+    //   cart = userCart;
+    // }      
+    
+    // {
+    //     user && ( const [cart] = useCart)
+    // } 
+    //  const cart = []
+     const [cart] = useCart()
 
 
     const handleOut = () => {
@@ -20,13 +33,7 @@ const NavBar = () => {
         <li><Link to={'/'}>Home</Link></li>
         <li><Link to={'/menu'}>Menu</Link></li>
         <li><Link to={'/order/salad'}>Order</Link></li>
-        <li><Link to={'/dashboard/myCart'}>
-            <button className="btn gap-2">
-                <FaShoppingCart></FaShoppingCart>
-                <div className="badge badge-secondary">+{cart?.length}</div>
-            </button>
-        </Link>
-        </li>
+        <NavCounter cart={cart}></NavCounter>
         {user ? <li><Link onClick={handleOut}>LogOut</Link></li>
             : <li><Link to={'/login'} >Log in</Link></li>}
     </>
