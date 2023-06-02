@@ -3,14 +3,16 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
+const axiosSecure = axios.create({
+    baseURL: 'http://localhost:5000'
+})
 
 const useAxiosSecure = () => {
+    
     const navigate = useNavigate();
     const { logOut } = useContext(AuthContext)
 
-    const axiosSecure = axios.create({
-        baseURL: 'http://localhost:5000'
-    })
+
 
     useEffect(() => {
 
@@ -29,11 +31,11 @@ const useAxiosSecure = () => {
         // Intercept responses
         axiosSecure.interceptors.response.use(
             (response) => response,
-             async (error) => {
+            async (error) => {
                 // Handle 401 and 403 errors
                 if (error.response && [401, 403].includes(error.response.status)) {
                     // Logout user and navigate to login
-                   await  logOut()
+                    await logOut()
                     navigate('/login')
                 }
 

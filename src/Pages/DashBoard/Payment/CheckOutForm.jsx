@@ -25,7 +25,7 @@ const CheckOutForm = ({ price }) => {
                 setClientSecret(res.data.clientSecret)
             })
 
-    }, [])
+    }, [price, axiosSecure])
 
     const handleSubmit = async (event) => {
 
@@ -83,11 +83,17 @@ const CheckOutForm = ({ price }) => {
             console.log(error)
         }
 
-        setProcessing(false)
         console.log('payment intend',paymentIntent)
+        setProcessing(false)
 
         if(paymentIntent.status === 'succeeded'){
+            setTransactionId(paymentIntent.id)
             const transactionId = paymentIntent.id;
+            // TODO next;
+
+            const payment = {
+                
+            }
         }
 
 
@@ -119,6 +125,7 @@ const CheckOutForm = ({ price }) => {
                 </button>
             </form>
             {error && <p className='text-red-500'>{error}</p>}
+            {transactionId && <p className='text-green-500'>Transaction completed with transaction id : {transactionId}</p> }
         </>
     );
 };
