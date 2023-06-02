@@ -10,6 +10,7 @@
  * 8.npm install --save stripe
  * 9.create a intent api with payment method types [card]
  * 10. make sure you provide amount in cents (multiply price by 100)
- * 
+ * 11.call payment intent api to get client secret and set it in state
+ * 12.
  * 
  * */ 
