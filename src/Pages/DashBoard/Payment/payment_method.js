@@ -11,6 +11,10 @@
  * 9.create a intent api with payment method types [card]
  * 10. make sure you provide amount in cents (multiply price by 100)
  * 11.call payment intent api to get client secret and set it in state
- * 12.
+ * 12.use conformCardPayment api with client secret and info.
+ * 13.display confirm card error.
+ * 14. display confirm card success 
+ * 15. do things after payment
+ * 16.
  * 
  * */ 
