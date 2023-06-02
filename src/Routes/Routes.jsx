@@ -13,6 +13,7 @@ import AllUsers from "../Pages/DashBoard/Allusers/AllUsers";
 import AddItem from "../Pages/DashBoard/additem/AddItem";
 import PrivateAdmin from "../Pages/PrivateRouter/PrivateAdmin";
 import ManageItems from "../Pages/DashBoard/ManageItems/ManageItems";
+import Payment from "../Pages/DashBoard/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -53,9 +54,16 @@ const router = createBrowserRouter([
                 path:'myCart',
                 element:<MyCart></MyCart>
             },
+
+            {
+                path:'payment',
+                element:<Payment></Payment>
+            },
+
+            // admin user
             {
                 path:'allUsers',
-                element:<AllUsers></AllUsers>
+                element:<PrivateAdmin><AllUsers></AllUsers></PrivateAdmin>
             },
             {
                 path:'addItem',

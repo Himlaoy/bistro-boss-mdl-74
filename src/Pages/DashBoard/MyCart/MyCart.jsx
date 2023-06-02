@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import useCart from '../../../Hooks/useCart';
 import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const MyCart = () => {
 
@@ -23,21 +24,21 @@ const MyCart = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/carts/${crt._id}`,{
-                    method:'DELETE'
+                fetch(`http://localhost:5000/carts/${crt._id}`, {
+                    method: 'DELETE'
                 })
-                .then(res=>res.json())
-                .then(data=>{
-                    if(data.deletedCount>0){
-                        refetch()
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
-                    }
-                })
-                
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+
             }
         })
     }
@@ -52,7 +53,9 @@ const MyCart = () => {
                 <h1>My cart</h1>
                 <h2 className='uppercase'>Total order {cart.length}</h2>
                 <h2 className='uppercase'>Total price : {allTotal}</h2>
-                <button className="btn btn-outline">Button</button>
+                <Link to={'/dashboard/payment'}>
+                    <button className="btn btn-outline">pay</button>
+                </Link>
             </div>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
