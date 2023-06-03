@@ -5,8 +5,9 @@ import { useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 import useAuth from '../../../Hooks/useAuth';
+import Swal from 'sweetalert2';
 
-const CheckOutForm = ({ price }) => {
+const CheckOutForm = ({cart, price }) => {
     const {user} = useAuth()
     const [axiosSecure] = useAxiosSecure()
 
@@ -92,8 +93,29 @@ const CheckOutForm = ({ price }) => {
             // TODO next;
 
             const payment = {
-                
+                email: user?.email,
+                transactionId:paymentIntent.id,
+                price,
+                quantity: cart.length,
+                items: cart.map(item=>item.id),
+                itemName: cart.map(item=>item.name)
             }
+
+            axiosSecure.post('/payments',{payment})
+            .then(res=>{
+                if(res.data.insertedId){
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+            })
+
+
         }
 
 
