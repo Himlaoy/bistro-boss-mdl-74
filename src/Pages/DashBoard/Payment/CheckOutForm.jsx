@@ -9,6 +9,7 @@ import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 
 const CheckOutForm = ({cart, price }) => {
+    console.log(cart)
     const {user} = useAuth()
     const [axiosSecure] = useAxiosSecure()
 
@@ -105,7 +106,7 @@ const CheckOutForm = ({cart, price }) => {
                 itemName: cart.map(item=>item.name)
             }
 
-            axiosSecure.post('/payments',{payment})
+            axiosSecure.post('/payments',payment)
             .then(res=>{
                 console.log(res.data.insertResult)
                 if(res.data.insertResult.insertedId){
