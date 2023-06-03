@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+// import './CheckOutForm.css'
 
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
@@ -96,14 +97,18 @@ const CheckOutForm = ({cart, price }) => {
                 email: user?.email,
                 transactionId:paymentIntent.id,
                 price,
+                date: new Date(),
                 quantity: cart.length,
-                items: cart.map(item=>item.id),
+                cartItems: cart.map(item=>item._id),
+                menuItem:cart.map(item=>item.menuItemId),
+                status:'service pending',
                 itemName: cart.map(item=>item.name)
             }
 
             axiosSecure.post('/payments',{payment})
             .then(res=>{
-                if(res.data.insertedId){
+                console.log(res.data.insertResult)
+                if(res.data.insertResult.insertedId){
 
                     Swal.fire({
                         position: 'top-end',
